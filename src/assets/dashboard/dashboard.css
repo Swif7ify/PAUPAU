@@ -72,30 +72,30 @@
 /* help section */
 
 .help-section {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
 }
 
 .help {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    background-color: #79d7e3;
-    border: 1px solid #349eb1;
-    padding: 10px 15px;
-    border-radius: 20px;
-    cursor: pointer;
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+	background-color: #79d7e3;
+	border: 1px solid #349eb1;
+	padding: 10px 15px;
+	border-radius: 20px;
+	cursor: pointer;
 }
 
 .help p {
-    font-weight: 500;
+	font-weight: 500;
 }
 
 .help-section img {
-    width: 25px;
+	width: 25px;
 }
 
 /* baba ng sidebar */
@@ -238,8 +238,13 @@ input {
 }
 
 .main-content {
+	display: flex;
 	padding-left: 370px;
+	padding-right: 20px;
+	padding-top: 100px;
 	box-sizing: border-box;
+	height: 100%;
+	width: 100%;
 }
 
 /* topbar */
@@ -274,7 +279,7 @@ input {
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
-    gap: 10px;
+	gap: 10px;
 }
 
 .topbar-options img {
@@ -314,4 +319,29 @@ input {
 
 input::placeholder {
 	color: white;
+}
+
+/* popup */
+
+.edit-information-popup {
+	position: fixed;
+	top: 50%;
+	left: 55%;
+	transform: translate(-50%, -50%);
+	z-index: 2000;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+	opacity: 1;
 }

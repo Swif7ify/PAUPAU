@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import Information from "../components/information.vue"; 
+import Information from "../component/dashboard/information.vue";
+import Main from "../component/dashboard/main.vue";
 
 const userName = ref("John Doe Mendoza");
 const proficiency = ref("Advanced");
@@ -130,33 +131,47 @@ const openEditInformation = () => {
 		</div>
 	</div>
 
-	<!-- main content -->
-	<div class="main-content">
-		<div class="topbar">
-			<div class="topbar-left">
-				<div class="topbar-options">
-					<img src="../../public/calendar.svg" alt="calendar" />
-					<p>Sessions</p>
-				</div>
-				<div class="topbar-options">
-					<img src="../../public/records.svg" alt="record" />
-					<p>Records</p>
-				</div>
-				<div class="topbar-options">
-					<img src="../../public/files.svg" alt="notes" />
-					<p>Files</p>
-				</div>
-				<div class="topbar-options">
-					<img src="../../public/logout.svg" alt="notes" />
-					<p>logout</p>
-				</div>
+	<!-- topbar -->
+	<div class="topbar">
+		<div class="topbar-left">
+			<div class="topbar-options">
+				<img src="../../public/calendar.svg" alt="calendar" />
+				<p>Main</p>
 			</div>
-			<div class="topbar-right">
-				<input maxlength="32" type="text" placeholder="Search" />
-				<img src="../../public/search.svg" alt="search" />
+			<div class="topbar-options">
+				<img src="../../public/calendar.svg" alt="calendar" />
+				<p>Sessions</p>
+			</div>
+			<div class="topbar-options">
+				<img src="../../public/records.svg" alt="record" />
+				<p>Records</p>
+			</div>
+			<div class="topbar-options">
+				<img src="../../public/files.svg" alt="notes" />
+				<p>Files</p>
+			</div>
+			<div class="topbar-options">
+				<img src="../../public/logout.svg" alt="notes" />
+				<p>logout</p>
 			</div>
 		</div>
+		<div class="topbar-right">
+			<input maxlength="32" type="text" placeholder="Search" />
+			<img src="../../public/search.svg" alt="search" />
+		</div>
 	</div>
+
+	<!-- main content -->
+	<div class="main-content">
+		<!-- main -->
+		<Main />
+	</div>
+
+	<Transition name="fade" mode="out-in">
+		<div v-if="isEdit" class="edit-information-popup">
+			<Information @close="openEditInformation" />
+		</div>
+	</Transition>
 </template>
 
 <style scoped src="../assets/dashboard/dashboard.css"></style>
