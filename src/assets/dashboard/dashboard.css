@@ -1,207 +1,317 @@
 .sidebar {
-    position: fixed;
-    height: 100%;
-    width: 350px;
-    top: 0;
-    bottom: 0;
-    min-width: 325px;
-    gap: 10px;
-    box-sizing: border-box;
-    padding: 25px 25px;
-    background-color: #0c434d !important;
+	position: fixed;
+	height: 100%;
+	width: 350px;
+	top: 0;
+	bottom: 0;
+	min-width: 325px;
+	gap: 10px;
+	box-sizing: border-box;
+	padding: 25px 25px;
+	background-color: #0c434d !important;
+	box-sizing: border-box;
+	z-index: 1000;
 }
 
-
 .upper-element {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 25px;
 }
 
 .upper-element div:first-of-type {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .sidebar .upper-element h1 {
-    color: #f5f5f5;
-    font-size: 24px;
-    font-weight: 400;
-    text-align: center;
+	color: #f5f5f5;
+	font-size: 24px;
+	font-weight: 400;
+	text-align: center;
 }
 
 .sidebar .upper-element h2 {
-    color: #f5f5f5;
-    font-size: 24px;
-    text-align: center;
+	color: #f5f5f5;
+	font-size: 24px;
+	text-align: center;
 }
 
 .sidebar .upper-element img {
-    width: 110px;
-    height: 110px;
-    object-fit: cover;
-    border-radius: 50%;
+	width: 110px;
+	height: 110px;
+	object-fit: cover;
+	border-radius: 50%;
 }
 
 .sidebar .upper-element div:last-of-type {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .sidebar .upper-element div:last-of-type p {
-    color: #d9dcef;
-    text-align: center;
+	color: #d9dcef;
+	text-align: center;
 }
 
 .stars {
+	display: flex;
+	gap: 5px !important;
+	flex-direction: row !important;
+	font-size: 1.2rem;
+	color: gold;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+/* help section */
+
+.help-section {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+
+.help {
     display: flex;
-    gap: 5px !important;
-    flex-direction: row !important;
-    font-size: 1.2rem;
-    color: gold;
-    width: 100%;
+    flex-direction: row;
+    gap: 10px;
     justify-content: center;
     align-items: center;
+    background-color: #79d7e3;
+    border: 1px solid #349eb1;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.help p {
+    font-weight: 500;
+}
+
+.help-section img {
+    width: 25px;
 }
 
 /* baba ng sidebar */
 
 .footer-element {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 20px;
-    /* background-color: #309cb0; */
-    height: 100%;
-    width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	gap: 20px;
+	/* background-color: #309cb0; */
+	height: 100%;
+	width: 100%;
 }
 
 .bio-container {
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
+	display: flex;
+	gap: 10px;
+	flex-direction: column;
 }
 
 .bio-container input {
-    color: #066678;
-    border: none;
-    height: 100%;
-    width: 100%;
+	color: #066678;
+	border: none;
+	height: 100%;
+	width: 100%;
 }
 
 .bio-container div {
-    max-height: 152px;
-    overflow: auto;
+	max-height: 152px;
+	overflow: auto;
 }
 
 textarea {
-    width: 100%;
-    height: 152px;
-    resize: none; 
-    box-sizing: border-box;
-    border: none;
+	width: 100%;
+	height: 152px;
+	resize: none;
+	box-sizing: border-box;
+	border: none;
 }
 
 .bio-container div::-webkit-scrollbar {
-    display: none;
+	display: none;
 }
 
 input {
-    background-color: inherit;
-    border: 1px solid green;
-    text-align: center
+	background-color: inherit;
+	border: 1px solid green;
+	text-align: center;
 }
 
-.bio-container h1, .user-information h1, .availability h1, .course-offered h1 {
-    font-size: 18px;
-    color: #d9dcef;
-    margin-left: 10px;
+.bio-container h1,
+.user-information h1,
+.availability h1,
+.course-offered h1 {
+	font-size: 18px;
+	color: #d9dcef;
+	margin-left: 10px;
 }
 
-.user-information h1, .availability h1, .course-offered h1 {
-    margin-bottom: 10px;
+.user-information h1,
+.availability h1,
+.course-offered h1 {
+	margin-bottom: 10px;
 }
 
 .bio-container div:first-of-type {
-    background-color: white;
-    padding: 10px 15px;
-    border-radius: 15px;
+	background-color: white;
+	padding: 10px 15px;
+	border-radius: 15px;
 }
 
 .bio-container p {
-    color: #066678;
+	color: #066678;
 }
 
 .lines {
-    padding: 5px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    border-radius: 10px;
-    overflow: hidden;
+	padding: 5px;
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	border-radius: 10px;
+	overflow: hidden;
 }
 
 .lines div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	flex: 1;
 }
 
 .lines h3 {
-    font-size: 14px;
+	font-size: 14px;
 }
 
 .lines:nth-of-type(odd) {
-    background-color: #d9dcef;
+	background-color: #d9dcef;
 }
 
 .lines:nth-of-type(even) {
-    background-color: white;
+	background-color: white;
 }
 
-.lines h3, .lines p {
-    color: #066678;
-    text-align: center;
-    font-size: 13px;
+.lines h3,
+.lines p {
+	color: #066678;
+	text-align: center;
+	font-size: 13px;
 }
 
 .course-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
 }
 
 .course-card {
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .course-card .lines p {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .edit-information {
-    display: flex;
-    width: 100%;
+	display: flex;
+	width: 100%;
 }
 
 .edit-information button {
-    background-color: #006981;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
+	background-color: #006981;
+	color: white;
+	padding: 10px 15px;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+	width: 100%;
 }
 
 .main-content {
-    padding-left: 350px;
-    box-sizing: border-box; 
+	padding-left: 370px;
+	box-sizing: border-box;
+}
+
+/* topbar */
+
+.topbar {
+	position: fixed;
+	top: 0;
+	left: 350px;
+	right: 0;
+	height: 70px;
+	background-color: white !important;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 1000;
+	padding: 15px 20px;
+}
+
+.topbar-left {
+	display: flex;
+	flex-direction: row;
+	gap: 25px;
+}
+
+.topbar-left p {
+	color: #066678;
+}
+
+.topbar-options {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+    gap: 10px;
+}
+
+.topbar-options img {
+	width: 25px;
+	height: 25px;
+}
+
+.topbar-right {
+	display: flex;
+	position: relative;
+}
+
+.topbar-right input {
+	background-color: #006981;
+	border: none;
+	color: white;
+	outline: none;
+	padding: 15px 50px 15px 15px;
+	width: 250px;
+	text-align: initial;
+	border-radius: 10px;
+}
+
+.topbar-right img {
+	position: absolute;
+	width: 25px;
+	right: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 1000;
+	cursor: pointer;
+}
+
+.topbar-right input:focus {
+	border: 1px solid green !important;
+}
+
+input::placeholder {
+	color: white;
 }
