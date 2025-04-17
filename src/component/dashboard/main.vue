@@ -1,174 +1,33 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import viewUser from "@/component/dashboard/viewUser.vue";
 
-const userInformation = ref([
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
+const isView = ref(true);
+
+const openView = () => {
+	isView.value = true;
+};
+
+const closeView = () => {
+	isView.value = false;
+};
+
+const props = defineProps({
+	userInformation: {
+		type: Array,
+		required: false,
 	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-	{
-		userName: "Paulo Cordova",
-		yearLevel: "2nd Year",
-		course: "BSIT | CSS",
-	},
-]);
+});
 </script>
 
 <template>
 	<div class="main-wrapper">
 		<div class="user-grid">
-			<div v-for="user in userInformation" class="user-card">
+			<div
+				v-for="user in props.userInformation"
+				:key="user.id"
+				class="user-card"
+			>
 				<div class="upper-element">
 					<img src="https://placehold.co/600x400" alt="profile-pic" />
 					<h1>{{ user.userName }}</h1>
@@ -176,10 +35,16 @@ const userInformation = ref([
 				<div class="lower-element">
 					<p>{{ user.yearLevel }}</p>
 					<p>{{ user.course }}</p>
-					<button>See More</button>
+					<button @click="openView">See More</button>
 				</div>
 			</div>
 		</div>
+
+		<Transition name="fade" mode="out-in">
+			<div v-if="isView" class="view-popup">
+				<viewUser @close="closeView" />
+			</div>
+		</Transition>
 	</div>
 </template>
 
@@ -250,5 +115,13 @@ const userInformation = ref([
 	border-radius: 5px;
 	cursor: pointer;
 	margin-top: 20px;
+}
+
+.view-popup {
+	position: fixed;
+	top: 50%;
+	left: 55%;
+	transform: translate(-50%, -50%);
+	z-index: 2000;
 }
 </style>

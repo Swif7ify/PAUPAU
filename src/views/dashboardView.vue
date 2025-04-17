@@ -1,7 +1,8 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed, defineAsyncComponent } from "vue";
 import Information from "../component/dashboard/information.vue";
-import Main from "../component/dashboard/main.vue";
+import logoutDialog from "@/component/dashboard/logoutDialog.vue";
+import help from "@/component/dashboard/help.vue";
 
 const userName = ref("John Doe Mendoza");
 const proficiency = ref("Advanced");
@@ -20,6 +21,50 @@ const duration = ref(2);
 
 const isEdit = ref(false);
 
+const users = ref([]);
+
+const confirmLogout = ref(false);
+
+const isHelp = ref(false);
+
+const openHelp = () => {
+	isHelp.value = !isHelp.value;
+};
+
+const openLogoutDialog = () => {
+	confirmLogout.value = !confirmLogout.value;
+};
+
+const activeComponent = ref("main");
+const switchComponent = (component) => {
+	if (activeComponent.value !== component) {
+		activeComponent.value = component;
+	}
+};
+
+const mainView = defineAsyncComponent(() =>
+	import("../component/dashboard/main.vue")
+);
+
+const sessionView = defineAsyncComponent(() =>
+	import("../component/dashboard/session.vue")
+);
+
+const recordsView = defineAsyncComponent(() =>
+	import("../component/dashboard/records.vue")
+);
+
+const filesView = defineAsyncComponent(() =>
+	import("../component/dashboard/files.vue")
+);
+
+const componentMap = {
+	main: mainView,
+	session: sessionView,
+	records: recordsView,
+	files: filesView,
+};
+
 const courseCard = ref([
 	"Computer Programming",
 	"Ethics",
@@ -32,6 +77,226 @@ const courseCard = ref([
 const openEditInformation = () => {
 	isEdit.value = !isEdit.value;
 };
+
+const searchQuery = ref("");
+
+const filteredUsers = computed(() => {
+	return users.value.filter((user) => {
+		const searchLower = searchQuery.value.toLowerCase();
+		return (
+			searchQuery.value === "" ||
+			user.userName.toLowerCase().includes(searchLower) ||
+			user.yearLevel.toLowerCase().includes(searchLower) ||
+			user.course.toLowerCase().includes(searchLower)
+		);
+	});
+});
+
+const handleLogout = () => {
+	alert("User logged out");
+	confirmLogout.value = false;
+};
+
+const fetchUserInformation = () => {
+	return [
+		{
+			id: 1,
+			userName: "Maria Santos",
+			yearLevel: "1st Year",
+			course: "BSCS | CSS",
+		},
+		{
+			id: 2,
+			userName: "James Wilson",
+			yearLevel: "3rd Year",
+			course: "BSIT | CSS",
+		},
+		{
+			id: 3,
+			userName: "Sofia Rodriguez",
+			yearLevel: "2nd Year",
+			course: "BSA | CAFA",
+		},
+		{
+			id: 4,
+			userName: "David Chen",
+			yearLevel: "4th Year",
+			course: "BSME | COE",
+		},
+		{
+			id: 5,
+			userName: "Ana Reyes",
+			yearLevel: "1st Year",
+			course: "BSN | CON",
+		},
+		{
+			id: 6,
+			userName: "Marco Tan",
+			yearLevel: "3rd Year",
+			course: "BSBA | COB",
+		},
+		{
+			id: 7,
+			userName: "Ling Xu",
+			yearLevel: "5th Year",
+			course: "BSArch | CEA",
+		},
+		{
+			id: 8,
+			userName: "Paulo Cordova",
+			yearLevel: "2nd Year",
+			course: "BSIT | CSS",
+		},
+		{
+			id: 9,
+			userName: "Aisha Patel",
+			yearLevel: "4th Year",
+			course: "BSCE | COE",
+		},
+		{
+			id: 10,
+			userName: "Rafael Gutierrez",
+			yearLevel: "3rd Year",
+			course: "BSCS | CSS",
+		},
+		{
+			id: 11,
+			userName: "Nina Thompson",
+			yearLevel: "1st Year",
+			course: "BSBio | COS",
+		},
+		{
+			id: 12,
+			userName: "Carlos Mendoza",
+			yearLevel: "2nd Year",
+			course: "BSECE | COE",
+		},
+		{
+			id: 13,
+			userName: "Jennifer Kim",
+			yearLevel: "4th Year",
+			course: "BSA | CAFA",
+		},
+		{
+			id: 14,
+			userName: "Hiroshi Tanaka",
+			yearLevel: "3rd Year",
+			course: "BSBA | COB",
+		},
+		{
+			id: 15,
+			userName: "Fatima Ahmed",
+			yearLevel: "2nd Year",
+			course: "BSMT | COS",
+		},
+		{
+			id: 16,
+			userName: "Victor Garcia",
+			yearLevel: "1st Year",
+			course: "BSEE | COE",
+		},
+		{
+			id: 17,
+			userName: "Emily Zhang",
+			yearLevel: "5th Year",
+			course: "BSArch | CEA",
+		},
+		{
+			id: 18,
+			userName: "Michael Okafor",
+			yearLevel: "3rd Year",
+			course: "BSIT | CSS",
+		},
+		{
+			id: 19,
+			userName: "Isabella Martinez",
+			yearLevel: "2nd Year",
+			course: "BSPsych | CAS",
+		},
+		{
+			id: 20,
+			userName: "Raj Patel",
+			yearLevel: "4th Year",
+			course: "BSCS | CSS",
+		},
+		{
+			id: 21,
+			userName: "Gabriela Silva",
+			yearLevel: "1st Year",
+			course: "BSN | CON",
+		},
+		{
+			id: 22,
+			userName: "Daniel Lee",
+			yearLevel: "3rd Year",
+			course: "BSME | COE",
+		},
+		{
+			id: 23,
+			userName: "Fatma Ibrahim",
+			yearLevel: "2nd Year",
+			course: "BSBA | COB",
+		},
+		{
+			id: 24,
+			userName: "Alejandro Diaz",
+			yearLevel: "4th Year",
+			course: "BSCE | COE",
+		},
+		{
+			id: 25,
+			userName: "Mei Lin",
+			yearLevel: "3rd Year",
+			course: "BSChem | COS",
+		},
+		{
+			id: 26,
+			userName: "Mohammed Al-Farsi",
+			yearLevel: "1st Year",
+			course: "BSIT | CSS",
+		},
+		{
+			id: 27,
+			userName: "Sarah Johnson",
+			yearLevel: "5th Year",
+			course: "BSArch | CEA",
+		},
+		{
+			id: 28,
+			userName: "Juan Dela Cruz",
+			yearLevel: "2nd Year",
+			course: "BSIT | CSS",
+		},
+		{
+			id: 29,
+			userName: "Amara Okonkwo",
+			yearLevel: "4th Year",
+			course: "BSMath | COS",
+		},
+		{
+			id: 30,
+			userName: "Liam O'Connor",
+			yearLevel: "3rd Year",
+			course: "BSIT | CSS",
+		},
+		{
+			id: 31,
+			userName: "Priya Sharma",
+			yearLevel: "2nd Year",
+			course: "BSBA | COB",
+		},
+		{
+			id: 32,
+			userName: "Ricardo Torres",
+			yearLevel: "1st Year",
+			course: "BSCS | CSS",
+		},
+	];
+};
+
+onMounted(() => {
+	users.value = fetchUserInformation();
+});
 </script>
 
 <template>
@@ -124,39 +389,46 @@ const openEditInformation = () => {
 
 	<!-- help -->
 
-	<div class="help-section">
-		<div class="help">
-			<img src="../../public/help.svg" alt="help" />
-			<p>Help</p>
+	<Transition name="fade">
+		<div v-if="!isHelp" class="help-section">
+			<div @click="openHelp" class="help">
+				<img src="../../public/help.svg" alt="help" />
+				<p>Help</p>
+			</div>
 		</div>
-	</div>
+	</Transition>
 
 	<!-- topbar -->
 	<div class="topbar">
 		<div class="topbar-left">
-			<div class="topbar-options">
+			<div @click="switchComponent('main')" class="topbar-options">
 				<img src="../../public/calendar.svg" alt="calendar" />
 				<p>Main</p>
 			</div>
-			<div class="topbar-options">
+			<div @click="switchComponent('session')" class="topbar-options">
 				<img src="../../public/calendar.svg" alt="calendar" />
 				<p>Sessions</p>
 			</div>
-			<div class="topbar-options">
+			<div @click="switchComponent('records')" class="topbar-options">
 				<img src="../../public/records.svg" alt="record" />
 				<p>Records</p>
 			</div>
-			<div class="topbar-options">
+			<div @click="switchComponent('files')" class="topbar-options">
 				<img src="../../public/files.svg" alt="notes" />
 				<p>Files</p>
 			</div>
-			<div class="topbar-options">
+			<div @click="openLogoutDialog" class="topbar-options">
 				<img src="../../public/logout.svg" alt="notes" />
 				<p>logout</p>
 			</div>
 		</div>
 		<div class="topbar-right">
-			<input maxlength="32" type="text" placeholder="Search" />
+			<input
+				maxlength="32"
+				type="text"
+				v-model="searchQuery"
+				placeholder="Search"
+			/>
 			<img src="../../public/search.svg" alt="search" />
 		</div>
 	</div>
@@ -164,12 +436,30 @@ const openEditInformation = () => {
 	<!-- main content -->
 	<div class="main-content">
 		<!-- main -->
-		<Main />
+		<component
+			:userInformation="filteredUsers"
+			:is="componentMap[activeComponent] || mainView"
+		/>
 	</div>
 
 	<Transition name="fade" mode="out-in">
 		<div v-if="isEdit" class="edit-information-popup">
 			<Information @close="openEditInformation" />
+		</div>
+	</Transition>
+
+	<Transition name="fade" mode="out-in">
+		<div v-if="confirmLogout" class="logout-popup">
+			<logoutDialog
+				@close="confirmLogout = false"
+				@logout="handleLogout"
+			/>
+		</div>
+	</Transition>
+
+	<Transition name="fade" mode="out-in">
+		<div v-if="isHelp" class="help-popup">
+			<help @close="isHelp = false" />
 		</div>
 	</Transition>
 </template>

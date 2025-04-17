@@ -260,7 +260,7 @@ input {
 	justify-content: space-between;
 	align-items: center;
 	z-index: 1000;
-	padding: 15px 20px;
+	padding: 15px 20px 15px 40px;
 }
 
 .topbar-left {
@@ -323,12 +323,19 @@ input::placeholder {
 
 /* popup */
 
-.edit-information-popup {
+.edit-information-popup,
+.logout-popup {
 	position: fixed;
 	top: 50%;
 	left: 55%;
 	transform: translate(-50%, -50%);
 	z-index: 2000;
+}
+
+.help-popup {
+	position: fixed;
+	right: 50px;
+	bottom: 20px;
 }
 
 .fade-enter-active,
