@@ -2,7 +2,7 @@
 import { ref, computed } from "vue";
 import viewUser from "@/component/dashboard/viewUser.vue";
 
-const isView = ref(true);
+const isView = ref(false);
 
 const openView = () => {
 	isView.value = true;
